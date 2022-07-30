@@ -1,0 +1,28 @@
+syntax = "v1"
+
+info (
+	title: "go-zero service with wire"
+	desc: "testing go-zero service dependency injection with wire"
+	author: "Ace002"
+	email: ""
+)
+
+type createReq {
+	Number int64 `json:"number"`
+}
+
+type getResp {
+	Numbers int64 `json:"number"`
+}
+
+type getReq {
+	Id int64 `form:"id"`
+}
+
+service service-api {
+	@handler GetUser
+	get /users/id(getReq) returns(getResp)
+	
+	@handler CreateUser
+	post /users/create(createReq)
+}
